@@ -1,7 +1,6 @@
 {
-  "name": "tutorial-gulp-the-basics",
+  "name": "hydraprojects",
   "version": "0.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,5 +13,14 @@
     "gulp-coffee": "^2.0.1",
     "gulp-concat": "^2.2.0",
     "gulp-uglify": "0.3.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hydragit/hydraprojects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hydragit/hydraprojects/issues"
+  },
+  "homepage": "https://github.com/hydragit/hydraprojects#readme",
+  "description": ""
 }
