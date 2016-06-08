@@ -8,6 +8,7 @@ var jshint   = require('gulp-jshint');
 var changed  = require('gulp-changed');
 var plumber  = require('gulp-plumber');
 var imagemin = require('gulp-imagemin');
+var minifyCSS  = require('gulp-minify-css');
 ////////////////////////////////////////////////////
 //// Our variables
 ////////////////////////////////////////////////////
@@ -53,6 +54,21 @@ gulp.task('jshint', function() {
 	.pipe(plumber())
 	.pipe(jshint())
 	.pipe(jshint.reporter('default'));
+});
+
+////////////////////////////////////////////////////
+/// watch task
+/// looks for any file in SRC changed 
+/// and fires up gulp changed live to DEST
+
+gulp.task('minify-css', function() {
+	// place code in here
+    return gulp.src('./pre-css/style.css' )
+	.pipe(plumber())
+	.pipe(minifyCSS({
+		keepBreaks: true
+	}))
+	.pipe(gulp.dest('css'));
 });
 
 ////////////////////////////////////////////////////
