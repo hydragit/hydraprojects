@@ -27,5 +27,15 @@ gulp.task('jshint', function() {
 	.pipe(jshint.reporter('default'));
 });
 
+/// watch task
+/// looks for any file in SRC changed 
+/// and fires up gulp changed live
 
-gulp.task('default', ['jshint']);
+gulp.task('watch', function() {
+	// place code in here
+    gulp.watch(SRC, ['changed']);	
+});
+
+
+/// Default task of gulp
+gulp.task('default', ['jshint', 'watch']);
