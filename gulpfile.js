@@ -4,6 +4,9 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 
 
+/// gulp task jshint
+/// check for errors in js files
+
 gulp.task('jshint', function() {
 	// place code in here
     gulp.src('./js/main.js')
@@ -12,10 +15,4 @@ gulp.task('jshint', function() {
 });
 
 
-
-
-
-gulp.task('default', function() {
-	// place code in here
-
-});
+gulp.task('default', ['jshint']);
