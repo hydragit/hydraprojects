@@ -109,7 +109,7 @@ gulp.task('jshint', function() {
 /// looks for any file in SRC changed 
 /// and fires up gulp changed live to DEST
 gulp.task('sass', function () {
-    gulp.src('/pre-scss/*.scss')
+    gulp.src('pre-scss/*')
         .pipe(sass())
         .pipe(gulp.dest('scss'));
 });
