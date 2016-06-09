@@ -1,74 +1,62 @@
-*{margin:0;padding:0}
-body,html{height:100%}
-body{background-color:#000;font:13.34px Helvetica,Arial,sans-serif;font-size:small;text-align:center}
-.highlight .c,.highlight .c1,.highlight .cm,.highlight .cs,.highlight .ge{font-style:italic}
-.header a,.highlight .cp,.highlight .cs,.highlight .k,.highlight .kc,.highlight .kd,.highlight .kp,.highlight .kr,.highlight .kt,.highlight .nc,.highlight .ne,.highlight .nf,.highlight .o,.highlight .ow{font-weight:700}
-h1,h2,h3,h4,h5,h6{font-size:100%}
-h1{margin-bottom:1em}
-p{margin:1em 0}
-a{color:#00a}
-a:hover{color:#000}
-a:visited{color:#a0a}
-.posts{list-style-type:none;margin-bottom:2em}
-.posts li{line-height:1.75em}
-.posts span{color:#aaa;font-family:Monaco,"Courier New",monospace;font-size:80%}
-.site{font-size:115%;text-align:justify;width:42em;margin:3em auto 2em;line-height:1.5em}
-.header a{text-decoration:none}
-.title{display:inline-block;margin-bottom:2em}
-.title a{color:#a00}
-.title a:hover{color:#000}
-.header a.extra{color:#aaa;margin-left:1em}
-.header a.extra:hover{color:#000}
-.meta{color:#aaa}
-.footer{font-size:80%;color:#666;border-top:4px solid #eee;margin-top:2em;overflow:hidden}
-.footer .contact{float:left;margin-right:3em}
-.footer .contact a{color:#8085C1}
-.footer .rss{margin-top:1.1em;margin-right:-.2em;float:right}
-.footer .rss img{border:0}
-.post code,.post pre{border:1px solid #ddd;background-color:#eef}
-.post pre{padding:0 .4em}
-.post ol,.post ul{margin-left:1.35em}
-.post code{padding:0 .2em}
-.post pre.terminal,.post pre.terminal code{background-color:#333}
-.post pre code{border:none}
-.post pre.terminal{border:1px solid #000;color:#FFF}
-.highlight{background:#fff}
-.highlight .c{color:#998}
-.highlight .err{color:#a61717;background-color:#e3d2d2}
-.highlight .cm{color:#998}
-.highlight .cp{color:#999}
-.highlight .c1{color:#998}
-.highlight .cs{color:#999}
-.highlight .gd{color:#000;background-color:#fdd}
-.highlight .gd .x{color:#000;background-color:#faa}
-.highlight .gr{color:#a00}
-.highlight .gh{color:#999}
-.highlight .gi{color:#000;background-color:#dfd}
-.highlight .gi .x{color:#000;background-color:#afa}
-.highlight .go{color:#888}
-.highlight .gp{color:#555}
-.highlight .gs{font-weight:700}
-.highlight .gu{color:#aaa}
-.highlight .gt{color:#a00}
-.highlight .kt{color:#458}
-.highlight .m{color:#099}
-.highlight .s{color:#d14}
-.highlight .na{color:teal}
-.highlight .nb{color:#0086B3}
-.highlight .nc{color:#458}
-.highlight .no{color:teal}
-.highlight .ni{color:purple}
-.highlight .ne,.highlight .nf{color:#900}
-.highlight .nn{color:#555}
-.highlight .nt{color:navy}
-.highlight .nv{color:teal}
-.highlight .w{color:#bbb}
-.highlight .mf,.highlight .mh,.highlight .mi,.highlight .mo{color:#099}
-.highlight .s2,.highlight .sb,.highlight .sc,.highlight .sd,.highlight .se,.highlight .sh,.highlight .si,.highlight .sx{color:#d14}
-.highlight .sr{color:#009926}
-.highlight .s1{color:#d14}
-.highlight .ss{color:#990073}
-.highlight .bp{color:#999}
-.highlight .vc,.highlight .vg,.highlight .vi{color:teal}
-.highlight .il{color:#099}
-body{background:#fff}
+body{color:#fff;font:300 15px/15px Roboto,Arial,Helvetica;background:url(../images/bg.jpg) right no-repeat fixed #fff;background-size:cover;-webkit-font-smoothing:antialiased}
+a{color:#00a9c6;text-decoration:none}
+a:hover{color:#666}
+.btn,.btn:hover,a,a:hover{-webkit-transition:all .3s ease-in-out;-moz-transition:all .3s ease-in-out;-ms-transition:all .3s ease-in-out;-o-transition:all .3s ease-in-out;transition:all .3s ease-in-out;outline:0!important}
+h1,h2,h3,h4{margin:0;line-height:1em}
+h2{font:300 2.5em Josefin Sans,Arial,Helvetica;margin-bottom:1.5em}
+h3{font:300 2em Roboto,Arial,Helvetica;margin:2em 0 1em}
+h4{font:300 1.5em Roboto,Arial,Helvetica;margin-bottom:1em}
+h4 i{margin-right:.5em}
+p{font-size:1em;line-height:1.7em;margin-bottom:1.7em}
+.spacer{padding:6em 0}
+.btn{border:none;border-radius:0;padding:1em 4em;background:rgba(0,0,0,.5);text-transform:uppercase}
+.btn:active,.btn:hover{color:#fff}
+.btn-default{color:#ccc;border:1px solid #aaa}
+.btn-default:active,.btn-default:hover{background:rgba(0,0,0,.8)}
+.btn-primary{color:#fff;background:#666;width:100%;outline:0}
+.btn-primary:active,.btn-primary:focus,.btn-primary:hover{background:#333;box-shadow:none}
+#head,.carousel{margin-top:0}
+.banner{position:relative}
+.banner .caption{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.9)}
+.banner .caption-wrapper{display:table;height:100%;width:100%}
+.banner .caption-info{display:table-cell;vertical-align:middle;text-align:center;color:#fff}
+.banner .caption-info h1{font:400 4.5em Josefin Sans,Arial,Helvetica;text-transform:capitalize}
+.banner .caption-info p{font:600 1.7em Josefin Sans,Arial,Helvetica}
+.banner a.explore{color:#fff}
+.explore{margin:0 1em}
+.banner img.profile{border:5px solid #333}
+#works figcaption a{border:1px solid #fff;margin-top:1em;display:inline-block;color:#fff;padding:0 2em}
+#works figcaption a:hover{text-decoration:none;padding:0 3em}
+.testimonails{min-height:195px}
+.testimonails img{margin-top:5px}
+.testimonails span{color:#888}
+.testimonails span b{font-weight:400}
+.carousel-indicators li{border:1px solid #ccc}
+.carousel-indicators{bottom:0}
+.contactform input,.contactform textarea{width:100%;padding:1em;border:1px solid #ccc;margin-bottom:1em;border-radius:0;outline:0}
+.footer{background-color:#111;font-size:1em;color:#aaa}
+.footer a{color:#aaa;margin:0 1em}
+.gototop{position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,.5);padding:10px;color:#fff}
+.gototop i{line-height:.5em}
+@media (max-width:1200px){body{font:300 13px/13px Roboto,Arial,Helvetica}
+.grid figure h2{font:700 1.5em Roboto,Arial,Helvetica}
+figure.effect-oscar figcaption{padding:12%}
+figure.effect-chico figcaption::before,figure.effect-oscar figcaption::before{top:20px;right:20px;bottom:20px;left:20px}
+}
+@media (max-width:900px){h1{font:700 3.5em Roboto,Arial,Helvetica}
+h4{font:300 1.3em Roboto,Arial,Helvetica}
+.btn{padding:1em 2em}
+figure.effect-chico figcaption{padding:2em}
+figure.effect-oscar figcaption{padding:20%}
+figure.effect-chico figcaption::before{top:10px;right:10px;bottom:10px;left:10px}
+.grid figure.effect-chico p{font-size:.6em;line-height:1.5em}
+}
+@media (max-width:767px){body{font:300 12px/12px Roboto,Arial,Helvetica}
+.banner .caption,.carousel-caption,.carousel-control,.carousel-indicators{display:none}
+h2.text-center{text-align:left;font-size:1.7em}
+h4{font:300 1.2em Roboto,Arial,Helvetica}
+.spacer{padding:2em 0}
+.grid.team div{margin:0;padding:0}
+figure.effect-chico figcaption{padding:1.5em}
+.footer{padding-bottom:2em}
+}

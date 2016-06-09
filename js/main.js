@@ -1,8 +1,1 @@
-var a1;
-
-function showMilitaryTime() {
-    if (document.theForm.showMilitary[01].checked) {
-        return true;
-    }
-    return false;
-}
+function showMilitaryTime(){return!!document.theForm.showMilitary[1].checked}var a1;
