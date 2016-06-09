@@ -1,0 +1,35 @@
+// Generate a triangle with optional borders
+
+@mixin arrow-common($pos, $align, $offset) {
+  position: absolute;
+  #{opposite($pos)}: 100%;
+  #{$align}: $offset;
+  content: '';
+  border: solid transparent;
+}
+
+@mixin arrow($size: 20px, $pos: top, $bg: white, $b-wh: 0, $b-cl: #000, $offset: 50%) {
+  $align: top;
+
+  @if index((top bottom), $pos) {
+    $align: left;
+  }
+
+  position: relative;
+
+  &:after {
+    @include arrow-common($pos, $align, $offset);
+    border-#{opposite($pos)}-color: $bg;
+    border-width: $size;
+    margin-#{$align}: -$size;
+  }
+
+  @if $b-wh {
+    &:before {
+      @include arrow-common($pos, $align, $offset);
+      border-#{opposite($pos)}-color: $b-cl;
+      border-width: $size + $b-wh;
+      margin-#{$align}: -$size - $b-wh;
+    }
+  }
+}

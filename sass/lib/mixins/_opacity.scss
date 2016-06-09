@@ -1,0 +1,9 @@
+// Filter fallback for IE 8-
+
+@mixin opacity($n) {
+  opacity: $n;
+
+  @if $ie7 or $ie8 {
+    filter: alpha(opacity=#{$n * 100});
+  }
+}

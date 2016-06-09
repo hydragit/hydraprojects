@@ -1,0 +1,12 @@
+// hasLayout hack for IE7
+
+@mixin inline-block() {
+  display: inline-block;
+
+  @if $ie7 {
+    .is-ie7 & {
+      display: inline;
+      zoom: 1;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+// Image replacement
+// When replacing an element's content with an image, make sure to also set a specific
+// background-image: url(pathtoimage.png), width, and height so that your replacement image appears.
+
+@mixin ir() {
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  &:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 150%;
+  }
+  @if $ie7 {
+    .is-ie7 & {
+      text-indent: -9999px;
+    }
+  }
+}

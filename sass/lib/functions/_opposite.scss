@@ -1,0 +1,11 @@
+// Return opposit position
+// opposite(left) -> right
+
+@function opposite($value) {
+  @if $value == top { @return bottom; }
+  @if $value == bottom { @return top; }
+  @if $value == left { @return right; }
+  @if $value == right { @return left; }
+
+  @return center;
+}

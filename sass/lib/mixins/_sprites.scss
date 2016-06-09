@@ -1,0 +1,15 @@
+@mixin s($name, $map: $sprites, $sized: true) {
+  background: sprite-url($map) sprite-position($map, $name) no-repeat;
+
+  @if ($sized) {
+    @include sprite-dimensions($map, $name);
+  }
+}
+
+@mixin s_2x($name, $map: $sprites_2x) {
+  $pos: sprite-position($map, $name);
+
+  background-image: sprite-url($map);
+  background-position: nth($pos, 1) nth($pos, 2) / 2;
+  background-size: ceil(image-width(sprite-path($map)) / 2) auto;
+}

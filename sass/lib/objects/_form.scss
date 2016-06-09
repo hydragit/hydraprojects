@@ -1,0 +1,115 @@
+/**
+ * Forms
+ *
+ * Example:
+ *
+ * <form class="form[--vertical|inline]">
+ *   <div class="form__group">
+ *     <label class="form__label" for="email">
+ *       E-mail:
+ *       <small>Additional information</small>
+ *     </label>
+ *     <div class="form__control">
+ *       <input class="text-input" type="email" id="email">
+ *       <small>Some text after the field</small>
+ *     </div>
+ *   </div>
+ *   <div class="form__group">
+ *     <div class="form__label">
+ *       Options:
+ *     </div>
+ *     <div class="form__control">
+ *       <ul class="check-list[--vertical]">
+ *            <li>
+ *              <label>
+ *                <input type="checkbox"> Option
+ *              </label>
+ *            </li>
+ *            <li>
+ *                <label>
+ *                  <input type="checkbox"> Option
+ *                </label>
+ *            </li>
+ *        </ul>
+ *     </div>
+ *   </div>
+ * </form>
+ */
+
+.form {
+  &__group {
+    margin-bottom: $grid-gutter;
+    letter-spacing: -0.31em;
+    word-spacing: -0.43em;
+    @if $ie7 {
+      .is-ie7 & {
+        letter-spacing: normal;
+        word-spacing: -0.43em;
+      }
+    }
+  }
+
+  &__label, &__control {
+    @include inline-block;
+    vertical-align: middle;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+
+  &__label {
+    padding-right: $grid-gutter;
+    small {
+      display: block;
+    }
+  }
+
+  &__control {
+    padding-left: $grid-gutter;
+    small {
+      @include inline-block;
+    }
+  }
+
+  &--vertical {
+    .form__label, .form__control {
+      display: block;
+    }
+    .form__label {
+      padding-right: 0;
+      padding-bottom: $grid-gutter;
+    }
+    .form__control {
+      padding-left: 0;
+    }
+  }
+
+  &--inline {
+    .form__label, .form__control {
+      display: inline;
+    }
+    .form__label {
+      small {
+        @include inline-block;
+      }
+    }
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+.check-list {
+  li {
+    @include inline-block;
+    padding-right: $grid-gutter;
+  }
+
+  &--vertical {
+    li {
+      display: block;
+      padding-right: 0;
+      padding-bottom: $grid-gutter;
+    }
+  }
+}

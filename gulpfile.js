@@ -15,6 +15,7 @@ var plumber    = require('gulp-plumber');
 var imagemin   = require('gulp-imagemin');
 var minifyCSS  = require('gulp-minify-css');
 var uglify     = require('gulp-uglify');
+var sass       = require('gulp-sass');
 ////////////////////////////////////////////////////
 //// Our variables
 ////////////////////////////////////////////////////
@@ -39,13 +40,16 @@ gulp.task('changed', function() {
 
 
 //////////////////////////////////////////////////////////
+//// compressing javascryt files with uglify
 //// gulp task uglify looks for js files in pre-js
 //// and compresss it it to /js folder
 gulp.task('compress', function() {
 	// place code in here
    return gulp.src('./pre-js/*.js' )
 	    .pipe(plumber())
-	    .pipe(uglify())
+	    .pipe(uglify({
+		      keepBreaks: true
+	    }))
 	    .pipe(gulp.dest('js'));
 });
 //////////////////////////////////////////////////////////
@@ -62,7 +66,7 @@ gulp.task('compress', function() {
 /// and fires up gulp changed live to DEST
 gulp.task('minify-css', function() {
 	// place code in here
-   return gulp.src('./pre-css/style.css' )
+   return gulp.src('pre-css/*.css' )
 	    .pipe(plumber())
 	    .pipe(minifyCSS({
 		      keepBreaks: true
@@ -78,7 +82,7 @@ gulp.task('minify-css', function() {
 ///  and put's them into our dist img folder "img""
 gulp.task('compress-images', function() {
 	// place code in here
-    return gulp.src('pre-images/*')
+    return gulp.src('./pre-images/*')
 	.pipe(imagemin({ optimizationlevel: 7 }))	
 	.pipe(gulp.dest('img'));
 
@@ -95,6 +99,19 @@ gulp.task('jshint', function() {
 	.pipe(jshint())
 	.pipe(jshint.reporter('default'));
 
+});
+////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////
+/// Conpiling sass
+/// watch task
+/// looks for any file in SRC changed 
+/// and fires up gulp changed live to DEST
+gulp.task('sass', function () {
+    gulp.src('/pre-scss/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('scss'));
 });
 ////////////////////////////////////////////////////
 

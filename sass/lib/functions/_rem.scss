@@ -1,0 +1,9 @@
+// Convert pixels to rems
+
+@function rem($n, $base: $default-font-size) {
+  @if unit($n) != 'px' or unit($base) != 'px' {
+    @warn 'Only px unit is allowed here';
+  }
+
+  @return ($n / $base) * 1rem;
+}

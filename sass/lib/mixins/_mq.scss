@@ -1,0 +1,16 @@
+// @include mq('palm') {}
+// @include mq('(min-width: 1600px)') {}
+
+@mixin mq($key) {
+  $query: $key;
+
+  @if variable_exists(mq) and map_has_key($mq, $key) {
+    $query: map_get($mq, $key);
+  }
+
+  $query: 'only screen and #{$query}';
+
+  @media #{$query} {
+    @content;
+  }
+}
