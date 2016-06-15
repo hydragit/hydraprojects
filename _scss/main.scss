@@ -15,7 +15,7 @@
 html, body { height: 100%; }
 
 body {
-    background-color: antiquewhite;
+    background-color: white;
     font:  normal 100%/1.4 Georgia,serif;
     font-size: medium;
     text-align: center;
@@ -27,12 +27,12 @@ h1, h2, h3, h4, h5, h6 {
 h1 { margin-bottom: 1em; }
 p { margin: 1em 0; }
 
-a         { color: #00a; }
+a         { color: #000; }
 a:hover   { color: #000; }
-a:visited { color: #a0a; }
+a:visited { color: #000; }
 
 .current {
-    background: #00a;
+    background: #8085C1;
     color: #FFF;
 }
 
