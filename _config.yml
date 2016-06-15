@@ -1,4 +1,4 @@
 markdown: redcarpet
 baseurl: ""
 url: "http://hydragit.github.io/hydraprojects"
-exclude: ['README.md', 'node_modules']
+exclude: ['README.md', 'node_modules', "gulpfile.js", "package.json"]
