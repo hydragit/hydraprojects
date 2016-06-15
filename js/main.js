@@ -1,1 +1,0 @@
-function showMilitaryTime(){return!!document.theForm.showMilitary[1].checked}var a1;

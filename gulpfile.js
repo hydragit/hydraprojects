@@ -1,193 +1,67 @@
-//////////////////////////////////////////////////////
-///// Our Gulpfile
-//////////////////////////////////////////////////////
 var gulp        = require('gulp');
-///////////////////////////////////////////////////////
-// include plugins
-var jshint      = require('gulp-jshint');
-var changed     = require('gulp-changed');
-var plumber     = require('gulp-plumber');
-/////////////////////////////////////////////////////
-/// plumber checks for errors in file
-/// and list's them and prevent gulp from
-/// crashing
-///////////////////////////////////////////////////
-var imagemin    = require('gulp-imagemin');
-var minifyCSS   = require('gulp-minify-css');
-var uglify      = require('gulp-uglify');
+var browserSync = require('browser-sync');
 var sass        = require('gulp-sass');
-var less        = require('gulp-less');
-var browserSync = require('browser-sync').create();
-var reload      = browserSync.reload;
-var concat      = require('gulp-concat')
-var iconfont    = require('gulp-iconfont')
-////////////////////////////////////////////////////
-//// Our variables
-////////////////////////////////////////////////////
-var SRC  = './js/*.js';
-var DEST = 'dist'
-/////////////////////////////////////////////////////
+var prefix      = require('gulp-autoprefixer');
+var cp          = require('child_process');
 
-//////////////////////////////////////////////////////
-//// gulp task changed
-/// check for any js file changed  in source before 
-/// the default task and put's them in ./dist folder
-gulp.task('concat', function() {
-	// place code in here
-    return gulp.src(['pre-js/one.js', 'pre-js/two.js'])
-	.pipe(plumber())
-	.pipe(concat('all.js', {newLine: ';'}))
-	.pipe(gulp.dest('js'));
+var jekyll   = process.platform === 'win32' ? 'jekyll.bat' : 'jekyll';
+var messages = {
+    jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
+};
 
-});
-////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
-//// gulp task changed
-/// check for any js file changed  in source before 
-/// the default task and put's them in ./dist folder
-gulp.task('iconfont', function() {
-	// place code in here
-    gulp.src(['pre-assets/icons/*.svg'])
-	.pipe(iconfont({
-		fontName: 'awesome_font',
-		appendCodepoints: true
-	}))
-	.on('codepoints', function(codepoints, points) {
-           //// css templatying
-		   console.log(codepoints, options);
-	})
-	.pipe(gulp.dest('assets/fonts'));
-
-});
-////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////////////////
-//// gulp task changed
-/// check for any js file changed  in source before 
-/// the default task and put's them in ./dist folder
-gulp.task('changed', function() {
-	// place code in here
-    return gulp.src(SRC)
-	.pipe(plumber())
-	.pipe(changed(DEST))
-	.pipe(gulp.dest(DEST));
-
-});
-////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
-//// gulp task browser-sync
-/// check for any file changed in /pre-css and
-/// browser-sync will reload the browser and notify
-gulp.task('serve', ['minify-css'], function() {
-	// place code in here
-    browserSync.init({
-		server: "./"
-	})	
-	gulp.watch("./pre-css/*.css", ['minify-css']);
-    gulp.watch("./pre-css/*.css").on('change', reload);
-});
-////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////
-//// compressing javascryt files with uglify
-//// gulp task uglify looks for js files in pre-js
-//// and compresss it it to /js folder
-gulp.task('compress', function() {
-	// place code in here
-   return gulp.src('./pre-js/*.js' )
-	    .pipe(plumber())
-	    .pipe(uglify({
-		      keepBreaks: true
-	    }))
-	    .pipe(gulp.dest('js'));
-});
-//////////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////////
-/// minify-css 
-/// looks for pre-csss folder for style.css and
-/// minify's it to css folder
-/// and fires up gulp changed live to DEST
-gulp.task('minify-css', function() {
-	// place code in here
-   gulp.src('./pre-css/style.css' )	    
-	    .pipe(minifyCSS({
-		      keepBreaks: true
-	    }))
-	   .pipe(gulp.dest('css'));
+/**
+ * Build the Jekyll Site
+ */
+gulp.task('jekyll-build', function (done) {
+    browserSync.notify(messages.jekyllBuild);
+    return cp.spawn( jekyll , ['build'], {stdio: 'inherit'})
+        .on('close', done);
 });
 
-////////////////////////////////////////////////////
-
-//////////////////////////////////////////////////////
-//// gulp task compress-images
-///  compress snd minify images from images folder,
-///  and put's them into our dist img folder "img""
-gulp.task('compress-images', function() {
-	// place code in here
-    return gulp.src('./pre-images/*')
-	.pipe(plumber())
-	.pipe(imagemin({ optimizationlevel: 7 }))	
-	.pipe(gulp.dest('img'));
-
+/**
+ * Rebuild Jekyll & do page reload
+ */
+gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
+    browserSync.reload();
 });
-/////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////
-/// gulp task jshint
-/// check for errors in js files
-gulp.task('jshint', function() {
-	// place code in here
-    gulp.src('./js/main.js')
-	.pipe(plumber())
-	.pipe(jshint())
-	.pipe(jshint.reporter('default'));
-
+/**
+ * Wait for jekyll-build, then launch the Server
+ */
+gulp.task('browser-sync', ['sass', 'jekyll-build'], function() {
+    browserSync({
+        server: {
+            baseDir: '_site'
+        }
+    });
 });
-////////////////////////////////////////////////////
 
-
-////////////////////////////////////////////////////
-/// Conpiling sass
-/// watch task
-/// looks for any file in SRC changed 
-/// and fires up gulp changed live to DEST
+/**
+ * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
+ */
 gulp.task('sass', function () {
-    gulp.src('pre-scss/*')
-	    .pipe(plumber())
-        .pipe(sass())
-        .pipe(gulp.dest('scss'));
+    return gulp.src('_scss/main.scss')
+        .pipe(sass({
+            includePaths: ['scss'],
+            onError: browserSync.notify
+        }))
+        .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
+        .pipe(gulp.dest('_site/css'))
+        .pipe(browserSync.reload({stream:true}))
+        .pipe(gulp.dest('css'));
 });
-////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////
-/// watch task
-/// looks for any file in SRC changed 
-/// and fires up gulp changed live to DEST
-gulp.task('watch', function() {
-	// place code in here
-    gulp.watch(SRC, ['minify-css']);
-
+/**
+ * Watch scss files for changes & recompile
+ * Watch html/md files, run jekyll & reload BrowserSync
+ */
+gulp.task('watch', function () {
+    gulp.watch('_scss/*.scss', ['sass']);
+    gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
-////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////
-/// less task
-gulp.task('less', function() {
-	// place code in here
-    gulp.src('pre-less/*.less')   
-	.pipe(less())
-	.pipe(gulp.dest('less'));
-});
-////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////
-/// Default task of gulp
-///////////////////////////////////////////////////
-gulp.task('default', ['serve']);
-
-///////////////////////////////////////////////////
+/**
+ * Default task, running just `gulp` will compile the sass,
+ * compile the jekyll site, launch BrowserSync & watch files.
+ */
+gulp.task('default', ['browser-sync', 'watch']);
