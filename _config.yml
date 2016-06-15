@@ -1,3 +1,3 @@
 markdown: redcarpet
 baseurl: /hydraprojects
-exclude: ['README.md', 'node_modules', 'pre-assets', 'pre-css','pre-images', 'pre-js', 'pre-less', 'pre-scss']
+exclude: ['README.md', 'node_modules']
