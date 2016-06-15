@@ -1,4 +1,4 @@
 markdown: redcarpet
 baseurl: /hydraprojects
-url: "http://127.0.0.1:4000/"
+url: "http://hydragit.github.io/hydraprojects"
 exclude: ['README.md', 'node_modules']
