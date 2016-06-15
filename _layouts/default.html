@@ -7,29 +7,19 @@
   <link rel="stylesheet" href="{{site.url}}/css/main.css">
   <title>Hydra Projects</title>
 </head>
-
-
-  <body>
+<body>
 
 <header>
 <h1>Hydra Projects!</h1>
-<nav>
-  <ul>
-    <li><a href="{{site.url}}/index.html">Home</a></li>
-    <li><a href="{{site.url}}/news.html">News</a></li>
-    <li><a href="{{site.url}}/about.html">About</a></li>
-    <li><a href="{{site.url}}/videos.html">Videos</a></li>
-    <li><a href="{{site.url}}/downloads.html">Downloads</a></li>
-  </ul>
-</nav>
+{% include nav.html %}
 </header>
+
 {{content}}
+
 <footer>
+  {% include nav.html %}
 <p>© 2016 hydraprojects@hotmail.com</p>
 </footer>  
 
-   
-
-  </body>
-
+</body>
 </html>
