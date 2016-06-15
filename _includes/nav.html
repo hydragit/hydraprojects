@@ -1,9 +1,10 @@
 <nav>
-  <ul>
-    <li><a href="{{site.url}}/index.html">Home</a></li>
-    <li><a href="{{site.url}}/news.html">News</a></li>
-    <li><a href="{{site.url}}/about.html">About</a></li>
-    <li><a href="{{site.url}}/videos.html">Videos</a></li>
-    <li><a href="{{site.url}}/downloads.html">Downloads</a></li>
+  <ul class="nav {{include.navclass}}">
+    <li><a href="{{site.url}}/index/" class="{% if page.url contains 'index' %}current{% endif %}">Home</a></li>
+    <li><a href="{{site.url}}/about.html" class="{% if page.url contains 'about' %}current{% endif %}">About</a></li>
+    <li><a href="{{site.url}}/news.html" class="{% if page.url contains 'news' %}current{% endif %}">News</a></li>
+    <li><a href="{{site.url}}/videos.html" class="{% if page.url contains 'videos' %}current{% endif %}">Videos</a></li>
+    <li><a href="{{site.url}}/downloads.html" class="{% if page.url contains 'downloads' %}current{% endif %}">Downloads</a></li>
+    <li><a href="{{site.url}}/posts.html" class="{% if page.url contains 'posts' %}current{% endif %}">Posts</a></li>
   </ul>
 </nav>

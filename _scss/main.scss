@@ -31,6 +31,11 @@ a         { color: #00a; }
 a:hover   { color: #000; }
 a:visited { color: #a0a; }
 
+.current {
+    background: #00a;
+    color: #FFF;
+}
+
 /*****************************************************************************/
 /*
 /* Home
